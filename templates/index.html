@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Encryption Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Image Encryption Tool</h1>
+            <p>Encrypt and decrypt images using pixel manipulation</p>
+        </header>
+
+        <div class="main-content">
+            <div class="control-panel">
+                <div class="upload-section">
+                    <h2>Upload Image</h2>
+                    <input type="file" id="imageInput" accept="image/*">
+                    <div class="key-input">
+                        <label for="encryptionKey">Encryption/Decryption Key (1-255):</label>
+                        <input type="number" id="encryptionKey" min="1" max="255" value="42">
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="encryptBtn" class="btn encrypt-btn">Encrypt Image</button>
+                    <button id="decryptBtn" class="btn decrypt-btn">Decrypt Image</button>
+                    <button id="downloadBtn" class="btn download-btn">Download Result</button>
+                    <button id="resetBtn" class="btn reset-btn">Reset</button>
+                </div>
+                
+                <div class="status-section">
+                    <div id="loadingIndicator" class="loading-indicator hidden">Processing...</div>
+                    <div id="statusMessage" class="status-message"></div>
+                </div>
+            </div>
+
+            <div class="image-display">
+                <div class="image-container">
+                    <h3>Original Image</h3>
+                    <div class="image-wrapper">
+                        <img id="originalImage" src="{{ url_for('static', filename='img/placeholder.png') }}" alt="Original Image">
+                    </div>
+                </div>
+                
+                <div class="image-container">
+                    <h3>Result Image</h3>
+                    <div class="image-wrapper">
+                        <img id="resultImage" src="{{ url_for('static', filename='img/placeholder.png') }}" alt="Result Image">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-panel">
+            <div class="info-toggle">About the Encryption</div>
+            <div class="info-content">
+                <p>This tool encrypts images using pixel manipulation techniques:</p>
+                <ol>
+                    <li>XOR operation on each pixel value with your encryption key</li>
+                    <li>Swapping of Red and Blue color channels (for color images)</li>
+                </ol>
+                <p>Important: Remember your encryption key to decrypt your image later!</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Image Encryption Tool</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
